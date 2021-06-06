@@ -4,15 +4,10 @@ import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
 import pt from 'date-fns/locale/pt';
 import "react-datepicker/dist/react-datepicker.css";
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
+import formReducer from '../utils/forms';
 
 registerLocale('pt', pt)
-const formReducer = (state, event) => {
-    console.log(event.target)
-    return {
-        ...state,
-        [event.target.name]: event.target.value
-    };
-}
+
 const Cadastro = () => {
 
     const [startDate, setstartDate] = useState(new Date())

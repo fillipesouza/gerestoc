@@ -1,20 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, NavItem, NavLink } from 'reactstrap';
+import { NavLink as Link } from 'react-router-dom';
+import { Nav, Navbar, NavItem, NavLink, NavbarBrand } from 'reactstrap';
+import './Header.css'
 
 const Header = (props) => {
     return (
-        <Nav tabs>
+        <Navbar style={{ color: '#fff', backgroundColor: 'black', alignItems: 'center', justifyContent: 'space-around'}}>
+        <NavbarBrand tag={Link} to="/leitor">GERESTOC</NavbarBrand>
+        {props.isLogged?
+        <React.Fragment>
+        <Nav className="my-links" >
             <NavItem>
-                <NavLink><Link to="/cadastro">Cadastro Unico</Link></NavLink>
+                <NavLink activeStyle={{fontWeight: "bold"}} tag={Link} to="/cadastro">Cadastro Unico</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink><Link to="/multiplo" >Cadastra Lista</Link></NavLink>
+                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/multiplo" >Cadastra Lista</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink><Link to="/leitor" >Leitor</Link></NavLink>
+                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/leitor" >Leitor</NavLink>
+            </NavItem>
+           
+        </Nav>
+        <Nav  >
+        <NavItem>
+                <NavLink onClick={props.logout} >Logout</NavLink>
             </NavItem>
         </Nav>
+        </React.Fragment>
+        :
+        <div>
+
+        </div>
+    }
+        </Navbar>
     )
 }
 
