@@ -1,9 +1,12 @@
 import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { Nav, Navbar, NavItem, NavLink, NavbarBrand } from 'reactstrap';
+import { Nav, Navbar, NavItem, NavLink, NavbarBrand, Button } from 'reactstrap';
 import './Header.css'
 
 const Header = (props) => {
+    const printPage = () => {
+        window.print();
+    }
     return (
         <Navbar style={{ color: '#fff', backgroundColor: 'black', alignItems: 'center', justifyContent: 'space-around'}}>
         <NavbarBrand tag={Link} to="/leitor">GERESTOC</NavbarBrand>
@@ -19,7 +22,9 @@ const Header = (props) => {
             <NavItem>
                 <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/leitor" >Leitor</NavLink>
             </NavItem>
-           
+            <NavItem>           
+             <Button onClick={printPage}>Imprimir</Button>
+            </NavItem>           
         </Nav>
         <Nav  >
         <NavItem>

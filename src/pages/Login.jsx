@@ -5,6 +5,7 @@ import formReducer from '../utils/forms';
 
 const Login = () => {
     const [formData, setFormData] = useReducer(formReducer, {});
+    const [submitting, setsubmitting] = useState(false);
 
     return (
         <div>

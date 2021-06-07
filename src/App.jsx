@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { Redirect, Route, Switch } from "react-router";
-import { Col, Container, Row } from "reactstrap";
+import { Button, Container } from "reactstrap";
 import Cadastro from "./pages/Cadastro";
 import CadastroMultiplo from "./pages/CadastroMultiplo";
 import Header from "./pages/Header";
+import Inicial from './pages/Inicial';
 import Leitor from "./pages/Leitor";
 import Login from "./pages/Login";
 
@@ -42,14 +43,15 @@ const App = () => {
         </Switch>
         :
         <Switch>
-            <Route path="/login" exact >
-                <Login />
+            <Route path="/inicio" exact >
+                <Inicial />
             </Route>
-            <Redirect to="/login" />
+            <Redirect to="/inicio" />
         </Switch>
     }
 
         </Container>
+       
         </div>
 
     )

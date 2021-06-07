@@ -1,6 +1,6 @@
 import React, {useState, useReducer} from 'react'
 import QRCode from "react-qr-code";
-import DatePicker, { registerLocale, setDefaultLocale } from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import pt from 'date-fns/locale/pt';
 import "react-datepicker/dist/react-datepicker.css";
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
@@ -13,7 +13,6 @@ const Cadastro = () => {
     const [startDate, setstartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
     const [formData, setFormData] = useReducer(formReducer, {});
-    const [submitting, setSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
 
     const handleSubmit = () => {

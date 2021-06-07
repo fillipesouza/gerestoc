@@ -3,16 +3,34 @@
     "version": "0.1.0",
     "homepage": "./",
     "description": "",
-    "main": "index.js",
+    "author": {
+        "email": "ss.fillipe@gmail.com",
+        "name": "Fillipe de Souza Silva"
+    },
+    "main": "public/electron.js",
     "private": true,
+    "build": {
+        "appId": "com.example.electron-cra",
+        "files": [
+            "build/**/*",
+            "node_modules/**/*"
+        ],
+        "directories": {
+            "buildResources": "assets"
+        }
+    },
     "dependencies": {
         "@testing-library/jest-dom": "^5.12.0",
         "@testing-library/react": "^11.2.7",
         "@testing-library/user-event": "^12.8.3",
         "bootstrap": "^5.0.1",
+        "crypto": "^1.0.1",
+        "electron-is-dev": "^2.0.0",
+        "keypair": "^1.0.3",
         "react": "^17.0.2",
         "react-datepicker": "^4.1.0",
         "react-dom": "^17.0.2",
+        "react-loader-spinner": "^4.0.0",
         "react-qr-code": "^1.1.1",
         "react-qr-reader": "^2.2.1",
         "react-router-dom": "^5.2.0",
@@ -22,8 +40,10 @@
         "web-vitals": "^1.1.2"
     },
     "devDependencies": {
+        "concurrently": "^6.2.0",
         "electron": "^13.1.0",
-        "electron-builder": "^22.10.5"
+        "electron-builder": "^22.10.5",
+        "wait-on": "^5.3.0"
     },
     "scripts": {
         "start": "react-scripts start",
@@ -31,9 +51,11 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "electron": "electron .",
-        "electron-pack": "electron-builder -c.extraMetadata.main='./index.js'",
-        "pack": "electron-builder --dir",
-        "dist": "electron-builder"
+        "electron-dev": "concurrently \"BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+        "electron-pack": "npm run build --em.main=build/electron.js",
+        "preelectron-pack": "npm run build",
+        "electron-build": "electron-builder",
+        "release": "npm run build && electron-builder "
     },
     "eslintConfig": {
         "extends": [
