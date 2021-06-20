@@ -22,6 +22,9 @@ const Header = (props) => {
             <NavItem>
                 <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/leitor" >Leitor</NavLink>
             </NavItem>
+            <NavItem>
+                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/dispositivos" >Dispositivos</NavLink>
+            </NavItem>
             <NavItem>           
              <Button onClick={printPage}>Imprimir</Button>
             </NavItem>           

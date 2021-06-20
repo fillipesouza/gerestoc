@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router";
 import { Button, Container } from "reactstrap";
 import Cadastro from "./pages/Cadastro";
 import CadastroMultiplo from "./pages/CadastroMultiplo";
+import Dispositivos from './pages/Dispositivos';
 import Header from "./pages/Header";
 import Inicial from './pages/Inicial';
 import Leitor from "./pages/Leitor";
@@ -36,9 +37,10 @@ const App = () => {
             <Route path="/leitor" exact >
                 <Leitor />
             </Route>
-            <Route path="/login" exact >
-                <Login />
+            <Route path="/dispositivos" exact >
+                <Dispositivos />
             </Route>
+        
             
         </Switch>
         :
