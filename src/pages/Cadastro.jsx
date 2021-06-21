@@ -5,6 +5,7 @@ import pt from 'date-fns/locale/pt';
 import "react-datepicker/dist/react-datepicker.css";
 import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import formReducer from '../utils/forms';
+import api from '../utils/api';
 
 registerLocale('pt', pt)
 
@@ -19,21 +20,28 @@ const Cadastro = () => {
         setSubmitted(true);
     }
 
+    const enviaEstoque = async () => {
+        await api.post('/api/estoque', formData)
+        setSubmitted(false)
+    }
+
     const converteData = (date) => {
-       return `${date.getUTCDate()}/${date.getUTCMonth()+1}/${date.getFullYear()}`
-       
+       return `${date.getUTCDate()}/${date.getUTCMonth()+1}/${date.getFullYear()}`     
 
     }
     return (
-        !submitted?
+        <div>
+            <h2>Cadastrando Estoque</h2>
+            <hr />
+        {!submitted?
         <Form onSubmit={handleSubmit}>
             <FormGroup>
                 <Label for="nome">Nome </Label>            
                 <Input required type="text" id="nome" name="nome" onChange={setFormData}/>
             </FormGroup>
             <FormGroup>
-                <Label for="nome">Tipo </Label>            
-                <Input required type="text" id="tipo" name="tipo" onChange={setFormData}/>
+                <Label for="nome">Lote </Label>            
+                <Input required type="number" id="lote" name="lote" onChange={setFormData}/>
             </FormGroup>
             <FormGroup>
                 <Label for="quantidade">Quantidade </Label>            
@@ -64,7 +72,14 @@ const Cadastro = () => {
             </FormGroup>
             <Button>Submit</Button>
       </Form>:
-      <QRCode value = {JSON.stringify(formData)} />
+      <div>
+        <div>
+        <QRCode value = {JSON.stringify(formData)} />
+        </div>
+        <Button onClick={enviaEstoque}>Confirmar Estoque</Button>
+    </div>
+    }
+    </div>
     )
 }
 

@@ -4,8 +4,13 @@ import formReducer from '../utils/forms';
 
 
 const Login = () => {
-    const [formData, setFormData] = useReducer(formReducer, {});
+    const [formData, setFormData] = useReducer(formReducer, {ip: localStorage.getItem('ipServidor') || ''});
     const [submitting, setsubmitting] = useState(false);
+
+    const logar = (event) => {
+        event.preventDefault();
+        localStorage.setItem('ipServidor', formData.ip) 
+    }
 
     return (
         <div>
@@ -18,7 +23,11 @@ const Login = () => {
                     <Label for="senha" >Senha</Label>
                     <Input id="senha" name="senha" type="password" onChange={setFormData} />
                 </FormGroup>
-                <Button >Logar</Button>
+                <FormGroup>
+                    <Label for="ip" >IP</Label>
+                    <Input id="ip" name="ip" type="text" onChange={setFormData} value={formData.ip} />
+                </FormGroup>
+                <Button onClick={logar} >Logar</Button>
             </Form>
         </div>
     )

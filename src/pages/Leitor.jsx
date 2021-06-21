@@ -3,6 +3,7 @@ import useSound from 'use-sound';
 import QrReader from 'react-qr-reader'
 import boopSfx from '../resources/stories_sounds_boop.mp3';
 import { Modal, ModalBody } from 'reactstrap';
+import api from '../utils/api';
  
 const Leitor = () => {
   const [result, setResult] = useState()
@@ -10,11 +11,12 @@ const Leitor = () => {
   const [play] = useSound(boopSfx);
 
   
-  const handleScan = data => {
+  const handleScan = async data => {
     if (data) {
       play();
       setResult(data);
       setModal(true);
+      await api.post('/api/qrcode', data)
     }
   }
   const handleError = err => {
@@ -36,7 +38,11 @@ const Leitor = () => {
           style={{ width: '20%' }}
         />
         <p>{ !result? "Tentando Ler": ""}</p>
-        <Modal isOpen={modal} toggle={toggle}><ModalBody>{result}</ModalBody></Modal>
+        <Modal isOpen={modal} toggle={toggle}><ModalBody>
+          <div>
+          {result}
+            </div>
+          </ModalBody></Modal>
       </div>
     )
   

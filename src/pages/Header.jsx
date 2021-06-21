@@ -9,18 +9,18 @@ const Header = (props) => {
     }
     return (
         <Navbar style={{ color: '#fff', backgroundColor: 'black', alignItems: 'center', justifyContent: 'space-around'}}>
-        <NavbarBrand tag={Link} to="/leitor">GERESTOC</NavbarBrand>
+        <NavbarBrand tag={Link} to="/leitor">GERESTOQ</NavbarBrand>
         {props.isLogged?
         <React.Fragment>
         <Nav className="my-links" >
             <NavItem>
-                <NavLink activeStyle={{fontWeight: "bold"}} tag={Link} to="/cadastro">Cadastro Unico</NavLink>
+                <NavLink activeStyle={{fontWeight: "bold"}} tag={Link} to="/cadastro">Cadastra Estoque</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/multiplo" >Cadastra Lista</NavLink>
+                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/multiplo" >Fracionamento</NavLink>
             </NavItem>
             <NavItem>
-                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/leitor" >Leitor</NavLink>
+                <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/leitor" >Leitor do Caixa</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink activeStyle={{fontWeight: "bold" }} tag={Link} to="/dispositivos" >Dispositivos</NavLink>

@@ -14,7 +14,7 @@ const Inicial = () => {
         <div>
            {isCadastro? <Login /> : <Registrar />}
            
-           <Button onClick={() => setIsCadastro(isCadastro => !isCadastro)}>{isCadastro? 'Ir para Login': 'Ir para Cadastro'}</Button>
+           <Button onClick={() => setIsCadastro(isCadastro => !isCadastro)}>{!isCadastro? 'Ir para Login': 'Ir para Cadastro'}</Button>
         </div>
     )
 }

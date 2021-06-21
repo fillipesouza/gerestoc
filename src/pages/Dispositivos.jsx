@@ -5,7 +5,7 @@ import formReducer from '../utils/forms';
 
 const mapValues = (val) => {
     return {
-        "hum": "Humidade",
+        "hum": "Umidade",
         "tmp": "Temperatura",
         "gas": "Gas",
         "pot": "Generico"
@@ -31,9 +31,8 @@ const MeuModal = (props) => {
 
                     <FormGroup>
                     <Label for="tipo" >Tipo</Label>
-                    <Dropdown></Dropdown>
                     <Input id="tipo" type="select" onChange={setDispositivo} name="tipo" value={dispositivo?.tipo || "hum"} >
-                        <option value="hum">Humidade</option>
+                        <option value="hum">Umidade</option>
                         <option value="tmp">Temperatura</option>
                         <option value="gas">Gas</option>
                         <option value="pot">Generico</option>                    
@@ -99,6 +98,8 @@ const Dispositivos = () => {
     const defaultDevice={pin: 0, noSensor: 'sensor1', alias: '', tipo: 'hum', conversao: 1.00}
     const [dispositivos, setDispositivos] = useState([])
     const [modal, setModal] = useState(false);
+    const [sensorId, setSensorId] = useState(null);
+    const [sensors, setSensors] = useState([]);
     const toggle = () => {
         setModal(!modal);
     }
@@ -126,15 +127,41 @@ const Dispositivos = () => {
         })
     }
 
+    const getSensors = () => {
+        api.get("/api/registered/sensors")
+        .then(res => {
+            console.log(res.data)
+            setSensors(res.data);
+            setSensorId(res.data[0])
+            reload()
+        })
+    }
+
 
     useEffect(() => {
-        reload();
+        getSensors();
     }, [])
 
     
 
     return (
         <div>
+            <p>  
+                <FormGroup>
+                    <Label for="sensorId" >Escolha o sensor: </Label>
+            <Input id="sensorId" type="select"  name="sensorId" value="sensor_freezer" >
+                        {sensors.map(sens => 
+                        <option value={sens.no_sensor}>{sens.no_sensor}</option>
+                        )}
+                                      
+                    </Input>
+                    </FormGroup>
+            </p>
+            <center>
+            <h2>Medidas para o {sensorId?.no_sensor}</h2>
+            <br />
+            <hr />
+            </center>
             <Table>
                 <thead>
                     <tr>

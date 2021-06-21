@@ -30,6 +30,8 @@ const CadastroMultiplo = () => {
     }
     return (
         <div>
+        <h2>Fracionamento</h2>
+        <hr />
         <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
@@ -37,8 +39,8 @@ const CadastroMultiplo = () => {
             <input name="nome" onChange={setFormData}/>
           </label>
           <label>
-            <p>Tipo</p>
-            <input name="tipo" onChange={setFormData}/>
+            <p>Lote</p>
+            <input name="lote" type="number" onChange={setFormData}/>
           </label>
           <label>
             <p>Quantidade</p>

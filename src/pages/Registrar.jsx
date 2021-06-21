@@ -3,6 +3,7 @@ import { Form, FormGroup, Input, Label, Button } from 'reactstrap';
 import keypair from 'keypair';
 import Loader from "react-loader-spinner";
 import formReducer from '../utils/forms';
+import api from '../utils/api';
 
 const Registrar = () => {
     const [formData, setFormData] = useReducer(formReducer, {});
@@ -17,6 +18,8 @@ const Registrar = () => {
         formData['pubKey'] = pub;
         localStorage.setItem('app-key', priv);
         console.log(formData)
+        await api.post('/api/user', formData)
+        setsubmitting(false)
         
     }
     
@@ -38,6 +41,15 @@ const Registrar = () => {
                 <Label for="confirmaSenha" >Confirma Senha</Label>
                 <Input id="confirmaSenha" name="confirmaSenha" type="password" onChange={setFormData} />
             </FormGroup>
+            <FormGroup>
+            <Label for="tipo" >Confirma Senha</Label>
+            <Input id="tipo" type="select" onChange={setFormData} name="tipo" value={0} >
+                        <option value={0}>admin</option>
+                        <option value={1}>operador</option>
+                        <option value={2}>caixa</option>                                        
+                    </Input>
+            </FormGroup>
+            
             <Button onClick={cadastro} >Cadastrar Conta</Button>
         </Form>
     </div>
