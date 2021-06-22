@@ -40,13 +40,14 @@ const App = () => {
             <Route path="/dispositivos" exact >
                 <Dispositivos />
             </Route>
+            <Redirect to="/multiplo" />
         
             
         </Switch>
         :
         <Switch>
             <Route path="/inicio" exact >
-                <Inicial />
+                <Inicial log={setLogged} />
             </Route>
             <Redirect to="/inicio" />
         </Switch>
